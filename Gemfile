@@ -9,7 +9,9 @@ gem 'httpclient'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.3'
-gem "sentry-raven"
+gem 'sentry-raven'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 
 group :development, :test do
   gem 'byebug'
@@ -30,6 +32,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '~> 3.10', require: false
   gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
   gem 'capistrano-rails', '~> 1.4', require: false
 end
 

@@ -2,8 +2,9 @@ require "capistrano/setup"
 require "capistrano/deploy"
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
-#require "capistrano/rvm"
-# require "capistrano/passenger"
+require "capistrano/rvm"
+require "capistrano/passenger"
+require "capistrano/bundler"
 #
 # For documentation on these, see for example:
 #
@@ -16,7 +17,6 @@ install_plugin Capistrano::SCM::Git
 #
 # require "capistrano/rbenv"
 # require "capistrano/chruby"
-# require "capistrano/bundler"
 # require "capistrano/rails/assets"
 # require "capistrano/rails/migrations"
 
