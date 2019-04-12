@@ -5,6 +5,10 @@ require 'uri'
 module Slack
   class Authorization
     class << self
+
+      # Accepts code given by slack and redirect uri for redirection
+      # Sends a post request to get token to slack and return the
+      # response boy.
       def oauth(code, redirect_uri)
         client = HTTPClient.new
         body = {

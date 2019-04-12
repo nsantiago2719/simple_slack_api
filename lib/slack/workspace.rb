@@ -5,6 +5,7 @@ module Slack
     attr_accessor :scope
     attr_accessor :installed_by
 
+    # Setting initial value for authentication
     def init!(workspace, installed_by)
       @defaults = {
         :@slack_oauth        => 'https://slack.com/oauth/authorize',

@@ -1,6 +1,9 @@
 module Slack
   class IncomingWebhook
     class << self
+      def ini!
+      end
+
       def send(payload = {})
       end
 
