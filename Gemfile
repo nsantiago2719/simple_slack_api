@@ -22,6 +22,10 @@ group :development, :test do
   gem 'simplecov', require: false
 end
 
+group :production do
+  gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+end
+
 group :development do
   gem 'better_errors'
   gem 'edukasyon-style', github: 'nsantiago2719/edukasyon-style'
@@ -31,8 +35,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '~> 3.10', require: false
-  gem 'capistrano-rvm'
-  gem 'capistrano-passenger'
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-passenger', require: false
   gem 'capistrano-rails', '~> 1.4', require: false
 end
 

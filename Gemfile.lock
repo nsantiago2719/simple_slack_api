@@ -131,6 +131,9 @@ GEM
     parallel (1.17.0)
     parser (2.6.2.1)
       ast (~> 2.4.0)
+    passenger (6.0.2)
+      rack
+      rake (>= 0.8.1)
     pg (1.1.4)
     powerpack (0.1.2)
     pry (0.12.2)
@@ -248,6 +251,7 @@ DEPENDENCIES
   faker
   httpclient
   listen (>= 3.0.5, < 3.2)
+  passenger (>= 5.0.25)
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.11)

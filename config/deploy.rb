@@ -6,9 +6,18 @@ set :passenger_restart_with_touch, true
 set :repo_url, 'https://github.com/nsantiago2719/simple_slack_api.git'
 set :branch, 'master'
 set :deploy_to, '/var/www/slack_api'
-set :user, '***REMOVED***'
+set :user, 'www-data'
 set :use_sudo, false
-
+set :passenger_rvm_ruby_version
+set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
+set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
+set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
+set :puma_access_log, "#{release_path}/log/puma.error.log"
+set :puma_error_log,  "#{release_path}/log/puma.access.log"
+set :linked_dirs, ['tmp/cache']
+set :puma_preload_app, true
+set :puma_worker_timeout, nil
+set :puma_init_active_record, true
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -26,7 +35,7 @@ set :use_sudo, false
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml"
+#append :linked_files, "config/database.yml"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -42,3 +51,4 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+after :deploy, :'passenger:restart'
