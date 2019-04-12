@@ -9,7 +9,6 @@ class OmniauthController < ApplicationController
   def callback
     res = Slack::Authorization.oauth(workspace_data[:code], @slack_app.redirect_uri)
     if res['ok']
-      binding.pry
       @workspace.update workspace_token:   res['access_token'],
                         installed_date:    Date.today,
                         team_name:         res['team_name'],
