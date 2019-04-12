@@ -40,7 +40,9 @@ end
 
 # Sentry configurations
 # requires sentry-raven in the gemfile
-Raven.configure do |config|
-  config.dsn = ENV.fetch('SENTRY_DSN')
-  config.environments = %w[ production ]
+if ENV['RAILS_ENV'] == 'production'
+  Raven.configure do |config|
+    config.dsn = ENV.fetch('SENTRY_DSN')
+    config.environments = %w[ production ]
+  end
 end

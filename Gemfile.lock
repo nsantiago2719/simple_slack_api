@@ -79,6 +79,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-secrets-yml (1.2.1)
+      capistrano (>= 3.10)
+      sshkit (>= 1.17.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
@@ -244,6 +247,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (~> 1.4)
   capistrano-rvm
+  capistrano-secrets-yml
   database_cleaner
   ed25519
   edukasyon-style!
