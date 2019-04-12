@@ -6,7 +6,7 @@ set :passenger_restart_with_touch, true
 set :repo_url, 'https://github.com/nsantiago2719/simple_slack_api.git'
 set :branch, 'master'
 set :deploy_to, '/var/www/slack_api'
-set :user, 'www-data'
+set :user, '***REMOVED***'
 set :use_sudo, false
 set :passenger_rvm_ruby_version
 set :puma_bind,       "unix://#{shared_path}/tmp/sockets/#{fetch(:application)}-puma.sock"
@@ -51,4 +51,5 @@ set :keep_releases, 2
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+#
 after :deploy, :'passenger:restart'
