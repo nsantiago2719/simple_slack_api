@@ -6,6 +6,7 @@ require "capistrano/rvm"
 require "capistrano/passenger"
 require "capistrano/bundler"
 require "capistrano/rails/migrations"
+require 'capistrano/secrets_yml'
 #
 # For documentation on these, see for example:
 #
