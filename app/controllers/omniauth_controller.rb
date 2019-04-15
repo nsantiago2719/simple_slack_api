@@ -1,10 +1,9 @@
 class OmniauthController < ApplicationController
 
   before_action :set_workspace!, only: %w(install callback)
+  before_action :verify_request, only: %w(index)
 
-  def index
-    render json: { msg: 'Unauthorized Access' }, status: 401
-  end
+  def index; end
 
   def callback
     res = Slack::Authorization.oauth(workspace_data[:code], @slack_app.redirect_uri)
