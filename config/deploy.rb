@@ -6,7 +6,6 @@ set :passenger_restart_with_touch, true
 set :repo_url, 'https://github.com/nsantiago2719/simple_slack_api.git'
 set :branch, 'master'
 set :deploy_to, '/var/www/slack_api'
-set :user, '***REMOVED***'
 set :use_sudo, false
 set :passenger_rvm_ruby_version
 set :linked_dirs, ['tmp/cache']
