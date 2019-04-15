@@ -1,5 +1,5 @@
 namespace :credential do
-  task generator: :environment do |t, args|
+  task generator: :environment do
     encryptor = ActiveSupport::MessageEncryptor
       .new(Rails.application.credentials.key)
 
