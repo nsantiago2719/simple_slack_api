@@ -20,6 +20,7 @@ module Slack
         body = {
           'channel'  => channel,
           'token'    => token,
+          'as_user'   => false
           'text'     => text
         }
         ext_head = {
