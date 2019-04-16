@@ -5,7 +5,7 @@ module Slack
       def channel_data(token, channel_id)
         client = HTTPClient.new
         body = {
-          'channel'   => channel_id
+          'channel'   => channel_id,
           'token'     => token
         }
         ext_head = {
