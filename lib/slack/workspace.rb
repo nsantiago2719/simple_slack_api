@@ -12,7 +12,11 @@ module Slack
         :@callback_uri       => ENV['CALLBACK_URI'],
         :@client_id          => ENV['SLACK_CLIENT_ID'],
         :@client_secret      => ENV['SLACK_CLIENT_SECRET'],
-        :@scope              => %w(incoming-webhook),
+        :@scope              => %w(bot
+                                   chat:write:bot
+                                   chat:write:user
+                                   emoji:read
+                                   links:write),
         :@workspace          => workspace,
         :@installed_by       => installed_by
       }

@@ -1,6 +1,6 @@
 class OmniauthController < ApplicationController
   before_action :set_workspace!, only: %w(install callback)
-  before_action :verify_request, only: %w(index)
+  before_action :verify_request, only: %w(index authentication)
 
   def index; end
 
@@ -10,8 +10,7 @@ class OmniauthController < ApplicationController
       @workspace.update workspace_token:   res['access_token'],
                         installed_date:    Time.zone.today,
                         team_name:         res['team_name'],
-                        webhook_url:       res['incoming_webhook']['url'],
-                        channel:           res['incoming_webhook']['channel']
+                        team_id:           res['team_id']
     end
     redirect_to "https://#{@workspace.workspace}.slack.com/messages"
   end
@@ -20,7 +19,16 @@ class OmniauthController < ApplicationController
     redirect_to @slack_app.oauth_authorize_url
   end
 
+  def authentication
+    workspace = Workspace.find_by(team_id: data[:team_id])
+    channel = workspace.channels.where(name: data[:channel])
+  end
+
   private
+
+  def authentication_data
+    parames.permit(:team_id, :channel)
+  end
 
   def workspace_data
     params.permit(:installed_by, :workspace, :code)

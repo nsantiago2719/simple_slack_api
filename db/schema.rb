@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_15_055918) do
+ActiveRecord::Schema.define(version: 2019_04_16_051316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "channels", force: :cascade do |t|
+    t.string "name"
+    t.string "slack_id"
+    t.integer "workspace_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string "public_id", null: false
@@ -79,11 +87,10 @@ ActiveRecord::Schema.define(version: 2019_04_15_055918) do
     t.string "workspace"
     t.datetime "installed_date"
     t.string "workspace_token"
-    t.string "webhook_url"
     t.string "team_name"
-    t.string "channel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "team_id"
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
