@@ -1,6 +1,6 @@
 class EventController < ApplicationController
   def challenge
-    if challenge_data['challege'].present?
+    if challenge_data['challenge'].present?
       url_callenge
     elsif members_joined_data['token'] == Config.first.event_token
       channel = register_workspace_channel
