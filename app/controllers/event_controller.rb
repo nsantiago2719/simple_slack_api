@@ -20,14 +20,15 @@ class EventController < ApplicationController
 
   def register_workspace_channel
     workspace = Workspace.find_by team_id: members_joined_data['team']
-    channel_information = Slack::Api
+    channel_info = Slack::Api
       .channel_data(workspace.workspace_token,
                     members_joined_data['channel_id']
                    )
+    binding.pry
     return workspace
       .channels
-      .find_or_create_by(slack_id: res['channel']['id'],
-                         name: res['channel']['name']
+      .find_or_create_by(slack_id: channel_info['channel']['id'],
+                         name: channel_info['channel']['name']
                         )
   end
 

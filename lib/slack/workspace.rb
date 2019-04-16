@@ -15,6 +15,7 @@ module Slack
         :@scope              => %w(bot
                                    chat:write:bot
                                    chat:write:user
+                                   channels:read
                                    emoji:read
                                    links:write),
         :@workspace          => workspace,
