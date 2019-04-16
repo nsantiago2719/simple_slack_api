@@ -1,7 +1,7 @@
 class EventController < ApplicationController
   def challenge
     if challenge_data['challenge'].present?
-      url_callenge
+      url_challenge!
     elsif members_joined_data['token'] == Config.first.event_token
       channel = register_workspace_channel
       bot_token = channel.workspace.bots.first.token
@@ -16,7 +16,7 @@ class EventController < ApplicationController
     end
   end
 
-  def url_challenge
+  def url_challenge!
     Config.first.update event_token: token
     render json: { challenge: challegne_data['challenge'] }
   end
