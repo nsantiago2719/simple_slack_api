@@ -23,12 +23,12 @@ class EventController < ApplicationController
     channel_information = Slack::Api
       .channel_data(workspace.workspace_token,
                     members_joined_data['channel_id']
-                    )
+                   )
     return workspace
       .channels
-      .create(slack_id: res['channel']['id'],
-              name: res['channel']['name']
-             )
+      .find_or_create_by(slack_id: res['channel']['id'],
+                         name: res['channel']['name']
+                        )
   end
 
   def challenge_data
