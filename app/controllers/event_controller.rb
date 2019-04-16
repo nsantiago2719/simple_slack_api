@@ -18,8 +18,8 @@ class EventController < ApplicationController
   def url_challenge
     if challenge_data['challange'].present?
       challenge_token = challenge_data['challenge']
-      render json: { challenge: challenge_token }
       Config.first.update event_token: token
+      return render json: { challenge: challenge_token }
     end
   end
 
