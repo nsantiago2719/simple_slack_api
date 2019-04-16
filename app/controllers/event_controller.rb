@@ -1,13 +1,15 @@
 class EventController < ApplicationController
   def members_joined; end
 
-  def challange
-    render json: { challange: challange_data['challange'] }
+  def challenge
+    challenge_token = challenge_data['body']['challenge']
+    render json: { challenge: challenge_token }
   end
 
   private
 
-  def challange_data
-    params.permit(:token, :challange, :type)
+  def challenge_data
+    params.require(:body)
+      .permit(:token, :challenge, :type)
   end
 end
