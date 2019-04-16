@@ -19,10 +19,10 @@ class EventController < ApplicationController
   end
 
   def register_workspace_channel
-    workspace = Workspace.find_by team_id: members_joined_data['team']
+    workspace = Workspace.find_by team_id: members_joined_data['team_id']
     bot_token = workspace.bots.first.token
     channel_info = Slack::Api.channel_data(bot_token,
-                                           members_joined_data['channel']
+                                           members_joined_data['event']['channel']
                                           )
     return workspace
       .channels
@@ -38,7 +38,7 @@ class EventController < ApplicationController
   end
 
   def members_joined_data
-    params.permit(:team, :channel)
+    params.permit(:token, :team_id, event: [ :channel ])
   end
 end
 
