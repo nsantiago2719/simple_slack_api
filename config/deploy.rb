@@ -9,7 +9,10 @@ set :deploy_to, '/var/www/slack_api'
 set :use_sudo, false
 set :passenger_rvm_ruby_version
 set :linked_dirs, ['tmp/cache']
-set :linked_files, ['config/database.yml', 'config/master.key', 'config/secrets.yml']
+set :linked_files, ['config/database.yml',
+                    'config/master.key',
+                    'config/secrets.yml',
+                    'config/application.yml']
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 # Default deploy_to directory is /var/www/my_app_name
