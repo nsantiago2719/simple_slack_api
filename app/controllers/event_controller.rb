@@ -9,7 +9,6 @@ class EventController < ApplicationController
   private
 
   def challenge_data
-    params.require(:body)
-      .permit(:token, :challenge, :type)
+    params.permit(:token, :challenge, :type)
   end
 end
