@@ -1,14 +1,39 @@
 class EventController < ApplicationController
-  def members_joined; end
-
   def challenge
-    challenge_token = challenge_data['challenge']
-    render json: { challenge: challenge_token }
+    url_challenge
+    register_workspace_channel
+    render json: { status: ok }, status: 200
   end
 
   private
 
+  def url_challenge
+    if challenge_data['challange'].present?
+      challenge_token = challenge_data['challenge']
+      return render json: { challenge: challenge_token }
+    end
+  end
+
+  def register_workspace_channel
+    workspace = Workspace.find_by team_id: members_joined_data['team']
+    channel_information = Slack::Api
+      .channel_data(workspace.workspace_token,
+                    members_joined_data['channel_id']
+                    )
+    workspace.channels.create(slack_id: res['channel']['id'],
+                              name: res['channel']['name']
+                             )
+  end
+
   def challenge_data
     params.permit(:token, :challenge, :type)
+  end
+
+  def members_joined_data
+    params.permit(:team, :channel)
+  end
+
+  def channel_data
+    params.permit(:ok, channel: [ :id, :name ] )
   end
 end
