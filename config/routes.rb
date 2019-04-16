@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get '/oauth/install',   to: 'omniauth#install',   as: 'install'
   get '/oauth/callback',  to: 'omniauth#callback',  as: 'omniauth_callback'
 
-  post '/events/subscribe', to: 'event#challenge',   as: 'challenge'
+  post '/events/invited-to-channel', to: 'event#challenge',   as: 'challenge'
 
 
 end

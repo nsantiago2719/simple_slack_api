@@ -1,20 +1,25 @@
 class EventController < ApplicationController
   def challenge
     url_challenge
-    channel = register_workspace_channel
-    bot_token = channel.workspace.bots.first.token
-    res = Slack::Api.greetings_message(channel.slack_id,
-                                 bot_token,
-                                 "Thank you for adding me!!"
-                                )
-    message = JSON.parse(res.body)
-    render json: { body: message }, status: res.status
+    if members_joined_data['token'] == Config.first.event_token
+      channel = register_workspace_channel
+      bot_token = channel.workspace.bots.first.token
+      res = Slack::Api.greetings_message(channel.slack_id,
+                                   bot_token,
+                                   "Thank you for adding me!!"
+                                  )
+      message = JSON.parse(res.body)
+      render json: { body: message }, status: res.status
+    else
+      render json: { message: 'Unauthorized' }, status: 401
+    end
   end
 
   def url_challenge
     if challenge_data['challange'].present?
       challenge_token = challenge_data['challenge']
-      return render json: { challenge: challenge_token }
+      render json: { challenge: challenge_token }
+      Config.first.update event_token: token
     end
   end
 
