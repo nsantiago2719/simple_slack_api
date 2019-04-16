@@ -2,7 +2,7 @@ class EventController < ApplicationController
   def members_joined; end
 
   def challenge
-    challenge_token = challenge_data['body']['challenge']
+    challenge_token = challenge_data['challenge']
     render json: { challenge: challenge_token }
   end
 
