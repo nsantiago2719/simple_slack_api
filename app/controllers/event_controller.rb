@@ -17,7 +17,7 @@ class EventController < ApplicationController
   end
 
   def url_challenge!
-    Config.first.update event_token: challenge_data['challenge']
+    Config.first.update event_token: challenge_data['token']
     render json: { challenge: challenge_data['challenge'] }
   end
 
