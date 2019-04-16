@@ -18,8 +18,8 @@ module Slack
       def greetings_message(channel, token, text)
         client = HTTPClient.new
         body = {
-          'channel'  => channel
-          'token'    => token
+          'channel'  => channel,
+          'token'    => token,
           'text'     => text
         }
         ext_head = {
