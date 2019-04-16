@@ -2,7 +2,7 @@ class EventController < ApplicationController
   def members_joined; end
 
   def challange
-    render json: { challange: data['challange'] }
+    render json: { challange: challange_data['challange'] }
   end
 
   private
