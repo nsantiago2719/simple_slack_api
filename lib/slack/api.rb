@@ -20,8 +20,10 @@ module Slack
         body = {
           'channel'  => channel,
           'token'    => token,
-          'as_user'   => false
-          'text'     => text
+          'as_user'  => false,
+          'text'     => text,
+          'username' => 'Mr. D'
+
         }
         ext_head = {
           'content-type'  => 'application/x-www-form-urlencoded'
