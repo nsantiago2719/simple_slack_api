@@ -23,7 +23,7 @@ module Slack
           'text'     => text
         }
         ext_head = {
-          'content-type'  => 'application/json'
+          'content-type'  => 'application/x-www-form-urlencoded'
         }
         res = client.post 'https://slack.com/api/chat.postMessage', body, ext_head
       end

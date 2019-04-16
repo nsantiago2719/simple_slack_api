@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_051316) do
+ActiveRecord::Schema.define(version: 2019_04_16_100607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bots", force: :cascade do |t|
+    t.string "token"
+    t.string "bid"
+    t.integer "workspace_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "channels", force: :cascade do |t|
     t.string "name"

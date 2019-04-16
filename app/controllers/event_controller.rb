@@ -2,11 +2,13 @@ class EventController < ApplicationController
   def challenge
     url_challenge
     channel = register_workspace_channel
-    Slack::Api.greetings_message(channel.slack_id,
-                                 channel.workspace.workspace_token,
+    bot_token = channel.workspace.bots.first.token
+    res = Slack::Api.greetings_message(channel.slack_id,
+                                 bot_token,
                                  "Thank you for adding me!!"
                                 )
-    render json: { status: ok }, status: 200
+    message = JSON.parse(res.body)
+    render json: { body: message }, status: res.status
   end
 
   def url_challenge
@@ -18,10 +20,10 @@ class EventController < ApplicationController
 
   def register_workspace_channel
     workspace = Workspace.find_by team_id: members_joined_data['team']
-    channel_info = Slack::Api
-      .channel_data(workspace.workspace_token,
-                    members_joined_data['channel']
-                   )
+    bot_token = workspace.bots.first.token
+    channel_info = Slack::Api.channel_data(bot_token,
+                                           members_joined_data['channel']
+                                          )
     return workspace
       .channels
       .find_or_create_by(slack_id: channel_info['channel']['id'],

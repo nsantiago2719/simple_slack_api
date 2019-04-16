@@ -11,6 +11,8 @@ class OmniauthController < ApplicationController
                         installed_date:    Time.zone.today,
                         team_name:         res['team_name'],
                         team_id:           res['team_id']
+      @workspace.bots.create bid: res['bot']['bot_user_id'],
+                             token: res['bot']['bot_access_token']
     end
     redirect_to "https://#{@workspace.workspace}.slack.com/messages"
   end
