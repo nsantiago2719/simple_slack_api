@@ -24,7 +24,6 @@ class EventController < ApplicationController
       .channel_data(workspace.workspace_token,
                     members_joined_data['channel_id']
                    )
-    binding.pry
     return workspace
       .channels
       .find_or_create_by(slack_id: channel_info['channel']['id'],
