@@ -44,5 +44,11 @@ if ENV['RAILS_ENV'] == 'production'
   Raven.configure do |config|
     config.dsn = ENV['SENTRY_DSN']
     config.environments = %w(production)
+    config.excluded_exceptions += %w(ActionController::RoutingError
+                                     ActiveRecord::RecordNotFound
+                                     AbstractController::ActionNotFound
+                                     ActionController::InvalidAuthenticityToken
+                                     ActionController::UnknownAction
+                                    )
   end
 end
