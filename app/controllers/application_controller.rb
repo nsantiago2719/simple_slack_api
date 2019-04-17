@@ -7,7 +7,6 @@ class ApplicationController < ActionController::API
       .new(Rails.application.credentials.key)
     begin
       decryptor.decrypt_and_verify(authorization_header)
-      render json: { message: 'Success' }, status: 200
     rescue
       render json: { message: 'Unauthorized Access' }, status: 401
     end
