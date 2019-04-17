@@ -29,6 +29,9 @@ class OmniauthController < ApplicationController
     workspace = Workspace.includes(:channels, :bots)
       .find_by(team_name: auth_request[:team_name])
     # get channel id
+    channel = auth_request[:channel]
+      .downcase
+      .gsub(/[^0-9a-z\-]/i, '')
     channel_id = workspace
       .channels
       .select { |c| c.name == auth_request[:channel] }
